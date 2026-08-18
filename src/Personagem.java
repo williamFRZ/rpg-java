@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public abstract class Personagem {
 
     private String nome;
@@ -5,7 +7,7 @@ public abstract class Personagem {
 
     private int hpAtual;
     private int hpMaximo;
-    private int energia;       // Adicionado para receber o valor do construtor
+    private int energia;
 
     private int ataque;
     private int defesa;
@@ -33,6 +35,17 @@ public abstract class Personagem {
     public int getAtaque() { return ataque; }
     public int getDefesa() { return defesa; }
     public int getVelocidade() { return velocidade; }
+    public Ataque[] getAcoes() { return acoes; }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public void setAcao(int indice, Ataque ataque) {
+        if(indice >= 0 && indice < 4) {
+            this.acoes[indice] = ataque;
+        }
+    }
 
     public void receberDano(int dano) {
         this.hpAtual -= dano;
@@ -40,14 +53,33 @@ public abstract class Personagem {
             this.hpAtual = 0;
         }
     }
-    public void setAcao(int indice, String acao) {
-        if(indice >= 0 && indice < 4) {
-            this.acoes[indice] = acao;
-        }
-    }
 
-    public String[] getAcoes() {
-        return acoes;
+    public void atacar(Personagem alvo, int indiceAtaque) {
+        Ataque ataqueUsado = this.acoes[indiceAtaque];
+
+        if (ataqueUsado == null || ataqueUsado.getNome().equals("- Vazio -")) {
+            System.out.println("Ataque inválido!");
+            return;
+        }
+
+        System.out.println("\n⚔️ " + this.nome + " usou " + ataqueUsado.getNome() + "!");
+
+        Random random = new Random();
+        int sorteio = random.nextInt(100) + 1;
+
+        if (sorteio <= ataqueUsado.getPrecisao()) {
+            int danoBruto = this.ataque + ataqueUsado.getPoder();
+            int danoFinal = danoBruto - alvo.getDefesa();
+
+            if (danoFinal < 1) {
+                danoFinal = 1;
+            }
+
+            System.out.println("💥 Acertou! Causou " + danoFinal + " de dano em " + alvo.getNome() + ".");
+            alvo.receberDano(danoFinal);
+        } else {
+            System.out.println("❌ O ataque falhou! " + this.nome + " errou o golpe.");
+        }
     }
 
     public abstract void exibirStatus();

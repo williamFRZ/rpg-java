@@ -10,23 +10,15 @@ public class Principal extends Personagem {
         this.especial = especial;
         this.especialDesbloqueado = false;
 
-        this.setAcao(0, new Ataque("Peteleco", 95)); // 95% de chance de acerto
-        this.setAcao(1, new Ataque("Chute", 80));    // 80% de chance de acerto
-        this.setAcao(2, new Ataque("- Vazio -", 0));
+        this.setAcao(0, new Ataque("Peteleco", 95, 10));
+        this.setAcao(1, new Ataque("Chute", 80, 15));
+        this.setAcao(2, new Ataque("- Vazio -", 0, 0));
 
         if (nome.equalsIgnoreCase("Gabriely") || nome.equalsIgnoreCase("Gaby")) {
             System.out.println("\n[Easter Egg] O universo do jogo sorriu! Uma presença especial foi detectada. 🦆❤️");
-            // A Bicada de Pato nunca erra! (100% de precisão)
-            this.setAcao(3, new Ataque("Bicada de Pato", 100));
+            this.setAcao(3, new Ataque("Bicada de Pato", 100, 50));
         } else {
-            this.setAcao(3, new Ataque("- Vazio -", 0));
-        }
-
-        if (nome.equalsIgnoreCase("Gabriely") || nome.equalsIgnoreCase("Gaby")) {
-            System.out.println("\nO universo do jogo sorriu! Uma presença especial foi detectada. 🦆❤️");
-            this.setAcao(3, "Bicada de Pato");
-        } else {
-            this.setAcao(3, "- Vazio -");
+            this.setAcao(3, new Ataque("- Vazio -", 0, 0));
         }
     }
 
@@ -38,20 +30,36 @@ public class Principal extends Personagem {
         System.out.println(" ⚡ Energia: " + getEnergia());
 
         System.out.println(" ⚔️ Ações disponíveis:");
-        String[] acoes = getAcoes();
+        Ataque[] acoes = getAcoes();
         for (int i = 0; i < acoes.length; i++) {
-            System.out.println("    [" + (i + 1) + "] " + acoes[i]);
+            if (acoes[i] != null && !acoes[i].getNome().equals("- Vazio -")) {
+                System.out.println("    [" + (i + 1) + "] " + acoes[i].getNome() + " (Poder: " + acoes[i].getPoder() + " | Precisão: " + acoes[i].getPrecisao() + "%)");
+            }
         }
         System.out.println("=====================================\n");
     }
 
     public void subirNivel() {
-        System.out.println("\n🌟 " + getNome() + " subiu de nível!");
+        setNivel(getNivel() + 1);
+        System.out.println("\n🌟 " + getNome() + " subiu para o nível " + getNivel() + "!");
 
-        if (!especialDesbloqueado) {
+        if (!especialDesbloqueado && getNivel() >= 3) {
             this.especialDesbloqueado = true;
-            this.setAcao(2, this.especial);
+            this.setAcao(2, new Ataque(this.especial, 80, 30));
             System.out.println("🔓 NOVO PODER DESBLOQUEADO: " + this.especial + "!");
+        }
+
+        Ataque[] acoes = getAcoes();
+        System.out.println("💪 Seus ataques ficaram mais fortes!");
+
+        for (int i = 0; i < acoes.length; i++) {
+            Ataque ataqueAtual = acoes[i];
+
+            if (ataqueAtual != null && !ataqueAtual.getNome().equals("- Vazio -")) {
+                int poderAntigo = ataqueAtual.getPoder();
+                ataqueAtual.fortalecer();
+                System.out.println("   -> " + ataqueAtual.getNome() + " (Poder: " + poderAntigo + " >>> " + ataqueAtual.getPoder() + ")");
+            }
         }
     }
 }

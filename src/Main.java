@@ -5,7 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("=====================================");
-        System.out.println("     BEM-VINDO AO RPG DO WILLIAM     ");
+        System.out.println("     BEM-VINDO AO RPG DE TADS        ");
         System.out.println("=====================================");
 
         System.out.print("Digite o nome do seu personagem: ");
@@ -45,16 +45,33 @@ public class Main {
                 break;
         }
 
-        // Instanciando o personagem com as escolhas
+        // Instanciando o personagem principal
         Principal heroi = new Principal(nome, curso, especial, 100, 50, 15, 10, 20);
 
         System.out.println("\nPersonagem criado com sucesso!");
         heroi.exibirStatus();
 
-        // Simulando o ganho do poder após subir de nível
-        System.out.println("... O tempo passa, muito estudo, muita batalha ...");
-        heroi.subirNivel();
+        // Simulando ganho de níveis para desbloquear o especial
+        System.out.println("\n[O tempo passa, muito estudo, muita programação...]");
+        heroi.subirNivel(); // Vai pro nível 2
+        heroi.subirNivel(); // Vai pro nível 3 e libera o especial!
+
+        System.out.println("\n⚠️ UM CHEFÃO APARECEU NO CORREDOR! ⚠️");
+        Bernarcos boss = new Bernarcos();
+        boss.exibirStatus();
+
+        System.out.println("\n--- DEMONSTRAÇÃO DE COMBATE ---");
+
+        // O herói ataca o Bernarcos usando o ataque no índice 0 (Peteleco)
+        heroi.atacar(boss, 0);
+
+        // O Bernarcos revida atacando o herói com o ataque no índice 0 (Soco Pesado)
+        boss.atacar(heroi, 0);
+
+        // Mostrando como ficaram as vidas depois do primeiro turno
+        System.out.println("\n--- STATUS APÓS O TURNO 1 ---");
         heroi.exibirStatus();
+        boss.exibirStatus();
 
         scanner.close();
     }
