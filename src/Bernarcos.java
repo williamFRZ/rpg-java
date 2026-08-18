@@ -3,13 +3,13 @@ public class Bernarcos extends Colega {
     private boolean modoFuria;
 
     public Bernarcos() {
-        super("Bernarcos, O Implacável", 250, 100, 25, 20, 22, "Exception Devastadora");
+        super("Bernarcos, O TI da manhã", 250, 100, 25, 20, 22, "Exception Devastadora");
         this.modoFuria = false;
 
         this.setAcao(0, new Ataque("Soco Pesado", 90, 20));
-        this.setAcao(1, new Ataque("Chute de Breakpoint", 85, 25));
-        this.setAcao(2, new Ataque("Reprovação Direta", 75, 35));
-        this.setAcao(3, new Ataque("Exception Devastadora", 60, 55));
+        this.setAcao(1, new Ataque("Chamado recusado", 85, 25));
+        this.setAcao(2, new Ataque("Derrubar Internet", 75, 35));
+        this.setAcao(3, new Ataque("Microfonada", 60, 55));
     }
 
     @Override
