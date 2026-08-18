@@ -18,14 +18,13 @@ public class Bernarcos extends Colega {
 
         if (this.getHpAtual() <= (this.getHpMaximo() / 2) && !this.modoFuria) {
             this.modoFuria = true;
-            System.out.println("\n🔥 O céu escurece... Bernarcos entrou em MODO FÚRIA! Seus ataques ficaram mais letais! 🔥");
+            System.out.println("\n🔥 O céu escurece... Bernarcos não comeu a Isabela e entrou no modo FÚRIA!");
 
-            // O boss ganha um buff nos ataques quando fica enfurecido
             Ataque[] acoes = getAcoes();
             for (int i = 0; i < acoes.length; i++) {
                 if (acoes[i] != null && !acoes[i].getNome().equals("- Vazio -")) {
                     acoes[i].fortalecer();
-                    acoes[i].fortalecer(); // Fortalece duas vezes para o dano subir bastante
+                    acoes[i].fortalecer();
                 }
             }
         }
@@ -38,7 +37,7 @@ public class Bernarcos extends Colega {
         System.out.println(" ❤️ HP: " + getHpAtual() + " / " + getHpMaximo());
 
         if (modoFuria) {
-            System.out.println(" 💢 STATUS: ENFURECIDO (Ataques Aumentados!)");
+            System.out.println(" 💢 STATUS: ENFURECIDO");
         }
         System.out.println("=====================================\n");
     }

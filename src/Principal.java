@@ -14,8 +14,8 @@ public class Principal extends Personagem {
         this.setAcao(1, new Ataque("Chute", 80, 15));
         this.setAcao(2, new Ataque("- Vazio -", 0, 0));
 
-        if (nome.equalsIgnoreCase("Gabriely") || nome.equalsIgnoreCase("Gaby")) {
-            System.out.println("\n[Easter Egg] O universo do jogo sorriu! Uma presença especial foi detectada. 🦆❤️");
+        if (nome.equalsIgnoreCase("gabriely") || nome.equalsIgnoreCase("gaby")) {
+            System.out.println("\nO universo do jogo sorriu! Uma presença especial foi detectada. 🦆❤️");
             this.setAcao(3, new Ataque("Bicada de Pato", 100, 50));
         } else {
             this.setAcao(3, new Ataque("- Vazio -", 0, 0));

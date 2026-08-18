@@ -24,7 +24,7 @@ public abstract class Personagem {
         this.ataque = ataque;
         this.defesa = defesa;
         this.velocidade = velocidade;
-        this.acoes = new Ataque[4];
+        this.acoes = new Ataque[5];
     }
 
     public String getNome() { return nome; }
