@@ -13,7 +13,8 @@ public class Main {
 
         if (nome.equalsIgnoreCase("gabriely") || nome.equalsIgnoreCase("gaby")) {
             System.out.println("\nO universo do jogo sorriu! Uma presença especial foi detectada. 🦆❤️");
-            System.out.println("\nVocê recebeu um ataque especial: Bicada de Pato! 🦆❤️");
+            System.out.println("Você recebeu um ataque especial: Bicada de Pato!");
+        }
 
             System.out.println("\nEscolha o seu curso:");
             System.out.println("[1] TADS");
@@ -87,4 +88,3 @@ public class Main {
             scanner.close();
         }
     }
-}
