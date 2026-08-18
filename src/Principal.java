@@ -17,6 +17,7 @@ public class Principal extends Personagem {
         if (nome.equalsIgnoreCase("gabriely") || nome.equalsIgnoreCase("gaby")) {
             System.out.println("\nO universo do jogo sorriu! Uma presença especial foi detectada. 🦆❤️");
             this.setAcao(3, new Ataque("Bicada de Pato", 100, 50));
+            System.out.println("\nVocê recebeu um ataque especial: Bicada de Pato! 🦆❤️");
         } else {
             this.setAcao(3, new Ataque("- Vazio -", 0, 0));
         }
